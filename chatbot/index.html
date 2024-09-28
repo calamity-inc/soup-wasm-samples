@@ -1,0 +1,32 @@
+<head>
+	<title>soup::Chatbot Demo</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://calamity-inc.github.io/Silver/base.css">
+</head>
+<body class="slv-ignore-darkreader">
+	<div class="slv-container">
+		<form onsubmit="return doSubmit();">
+			<input type="text" autofocus style="width:100%" />
+		</form>
+		<h2 id="text-response" style="margin:5px 0"></h2>
+	</div>
+	<script src="https://use.soup.do/"></script>
+	<script>
+		function doSubmit()
+		{
+			try
+			{
+				soup.scope(function()
+				{
+					let res = soup.Chatbot.process(document.querySelector("input").value);
+					document.getElementById("text-response").textContent = soup.cbResult.getResponse(res);
+				});
+			}
+			catch(e)
+			{
+				alert(e);
+			}
+			return false;
+		}
+	</script>
+</body>
